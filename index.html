@@ -1,0 +1,9 @@
+<script type="module">
+(async () => {
+  const bin = await (await fetch("./add.wasm")).arrayBuffer();
+  const wasm = await WebAssembly.instantiate(bin);
+  const ex = wasm.instance.exports;
+  const add = ex.add;
+  document.body.textContent = "WebAssembly in Rust, add(1,2) = " + add(1, 2);
+})();
+</script>
